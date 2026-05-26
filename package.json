@@ -1,0 +1,10 @@
+{
+  "name": "recipevault",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["web", "mobile"],
+  "scripts": {
+    "dev": "cd web && npm run dev",
+    "mobile": "cd mobile && npm start"
+  }
+}
