@@ -29,9 +29,7 @@
     "updates": {
       "url": "https://u.expo.dev/dbf11110-fe27-4260-9d49-d59690a21916"
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "exposdk:56.0.0",
     "extra": {
       "router": {},
       "eas": {

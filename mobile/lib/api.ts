@@ -1,10 +1,6 @@
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
-import { Platform } from "react-native";
-
-const BASE_URL = Platform.OS === "android"
-  ? "http://10.0.2.2:3000"
-  : "http://localhost:3000";
+const BASE_URL = "https://vikito11111recipevault.netlify.app";
 
 export const api = axios.create({ baseURL: BASE_URL, timeout: 10000 });
 

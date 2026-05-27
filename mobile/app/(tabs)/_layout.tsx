@@ -12,7 +12,7 @@ function TabIcon({ emoji, label, focused }: { emoji: string; label: string; focu
 
 export default function TabsLayout() {
   return (
-    <Tabs screenOptions={{ tabBarShowLabel: false, tabBarStyle: { height: 60, borderTopColor: "#F3F4F6" }, headerShown: false }}>
+    <Tabs screenOptions={{ tabBarShowLabel: false, tabBarStyle: { height: 60, borderTopColor: "#F3F4F6", paddingBottom: 4 }, headerShown: false, tabBarHideOnKeyboard: true }}>
       <Tabs.Screen name="index" options={{ tabBarIcon: ({ focused }) => <TabIcon emoji="🏠" label="Home" focused={focused} /> }} />
       <Tabs.Screen name="search" options={{ tabBarIcon: ({ focused }) => <TabIcon emoji="🔍" label="Search" focused={focused} /> }} />
       <Tabs.Screen name="favorites" options={{ tabBarIcon: ({ focused }) => <TabIcon emoji="♥" label="Saved" focused={focused} /> }} />
