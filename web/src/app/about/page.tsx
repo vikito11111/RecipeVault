@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About RecipeVault — Our Story & Tech Stack",
+  description:
+    "Learn about RecipeVault — your ultimate destination for discovering, sharing, and mastering recipes. Built with Next.js, Drizzle ORM, and Neon PostgreSQL.",
+  openGraph: {
+    title: "About RecipeVault",
+    description: "Discover the story behind RecipeVault and the technology that powers it.",
+    type: "website",
+  },
+};
 
 export default function AboutPage() {
   const features = [

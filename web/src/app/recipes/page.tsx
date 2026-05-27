@@ -1,4 +1,16 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "All Recipes — RecipeVault",
+  description:
+    "Browse over 10,000 recipes on RecipeVault. Search by name, filter by category or difficulty, and find your next favourite meal.",
+  openGraph: {
+    title: "All Recipes — RecipeVault",
+    description: "Browse thousands of recipes — filter by category, difficulty, and more.",
+    type: "website",
+  },
+};
 import RecipeCard from "@/components/RecipeCard";
 import Pagination from "@/components/Pagination";
 import { db } from "@/db";

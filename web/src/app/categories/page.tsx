@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { db } from "@/db";
+
+export const metadata: Metadata = {
+  title: "Recipe Categories — RecipeVault",
+  description:
+    "Browse all recipe categories on RecipeVault — from Italian and Asian to Desserts and Vegetarian. Find the perfect dish for every craving.",
+  openGraph: {
+    title: "Recipe Categories — RecipeVault",
+    description: "Browse recipes by category: Italian, Asian, Mexican, Desserts, Vegetarian, and more.",
+    type: "website",
+  },
+};
 import { categories, recipes } from "@/db/schema";
 import { eq, count } from "drizzle-orm";
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { db } from "@/db";
@@ -9,6 +10,31 @@ import FavoriteButton from "./FavoriteButton";
 import { formatDate } from "@/lib/utils";
 
 interface Props { params: Promise<{ id: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params;
+  const recipeId = parseInt(id);
+  if (isNaN(recipeId)) return { title: "Recipe — RecipeVault" };
+
+  const [recipe] = await db
+    .select({ title: recipes.title, description: recipes.description, imageUrl: recipes.imageUrl })
+    .from(recipes)
+    .where(eq(recipes.id, recipeId))
+    .limit(1);
+
+  if (!recipe) return { title: "Recipe Not Found — RecipeVault" };
+
+  return {
+    title: `${recipe.title} — RecipeVault`,
+    description: recipe.description?.slice(0, 160),
+    openGraph: {
+      title: recipe.title,
+      description: recipe.description?.slice(0, 160),
+      images: recipe.imageUrl ? [{ url: recipe.imageUrl }] : [],
+      type: "article",
+    },
+  };
+}
 
 const difficultyColor = { easy: "bg-green-100 text-green-700", medium: "bg-yellow-100 text-yellow-700", hard: "bg-red-100 text-red-700" };
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { db } from "@/db";
 import { categories, recipes, users } from "@/db/schema";
@@ -8,6 +9,29 @@ import { Suspense } from "react";
 import Pagination from "@/components/Pagination";
 
 interface Props { params: Promise<{ slug: string }>; searchParams: Promise<{ page?: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const [category] = await db
+    .select({ name: categories.name, description: categories.description })
+    .from(categories)
+    .where(eq(categories.slug, slug))
+    .limit(1);
+
+  if (!category) return { title: "Category — RecipeVault" };
+
+  return {
+    title: `${category.name} Recipes — RecipeVault`,
+    description: category.description
+      ? `${category.description} Browse ${category.name} recipes on RecipeVault.`
+      : `Browse the best ${category.name} recipes on RecipeVault.`,
+    openGraph: {
+      title: `${category.name} Recipes — RecipeVault`,
+      description: `Discover and share ${category.name} recipes on RecipeVault.`,
+      type: "website",
+    },
+  };
+}
 
 export default async function CategoryPage({ params, searchParams }: Props) {
   const { slug } = await params;

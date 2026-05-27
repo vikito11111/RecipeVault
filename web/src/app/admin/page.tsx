@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Admin Dashboard — RecipeVault",
+  description: "Admin panel for managing RecipeVault users, recipes, and platform statistics.",
+  robots: { index: false, follow: false },
+};
 import { db } from "@/db";
 import { users, recipes, reviews, categories, favorites } from "@/db/schema";
 import { count, desc, eq, sql } from "drizzle-orm";

@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "My Dashboard — RecipeVault",
+  description: "Manage your recipes, view your favorites, and track your activity on RecipeVault.",
+  robots: { index: false, follow: false },
+};
 import { db } from "@/db";
 import { recipes, favorites, reviews, categories, users } from "@/db/schema";
 import { eq, desc, count } from "drizzle-orm";
