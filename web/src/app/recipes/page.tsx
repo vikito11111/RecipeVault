@@ -66,31 +66,52 @@ export default async function RecipesPage({ searchParams }: Props) {
       </div>
 
       {/* Filters */}
-      <form method="GET" className="bg-white rounded-2xl border border-gray-100 p-4 mb-8 flex flex-wrap gap-3 items-end shadow-sm">
-        <div className="flex-1 min-w-[200px]">
-          <label className="text-xs font-medium text-gray-500 mb-1 block">Search</label>
-          <input name="search" defaultValue={search} placeholder="Search recipes..." className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200" />
+      <form method="GET" className="bg-white rounded-2xl border border-gray-100 p-4 mb-8 shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <label className="text-xs font-medium text-gray-500 mb-1 block">Search</label>
+            <input
+              name="search"
+              defaultValue={search}
+              placeholder="Search recipes..."
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200"
+            />
+          </div>
+          <div>
+            <label className="text-xs font-medium text-gray-500 mb-1 block">Category</label>
+            <select
+              name="category"
+              defaultValue={category}
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+            >
+              <option value="">All Categories</option>
+              {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
+            </select>
+          </div>
+          <div>
+            <label className="text-xs font-medium text-gray-500 mb-1 block">Difficulty</label>
+            <select
+              name="difficulty"
+              defaultValue={difficulty}
+              className="w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-orange-400"
+            >
+              <option value="">Any Difficulty</option>
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div className="flex items-end gap-2">
+            <button type="submit" className="flex-1 bg-orange-600 text-white px-4 py-2.5 rounded-lg hover:bg-orange-700 font-medium text-sm transition-colors">
+              Filter
+            </button>
+            {(search || category || difficulty) && (
+              <a href="/recipes" className="px-4 py-2.5 text-sm text-gray-500 hover:text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors whitespace-nowrap">
+                Clear
+              </a>
+            )}
+          </div>
         </div>
-        <div className="min-w-[150px]">
-          <label className="text-xs font-medium text-gray-500 mb-1 block">Category</label>
-          <select name="category" defaultValue={category} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400">
-            <option value="">All Categories</option>
-            {cats.map((c) => <option key={c.id} value={c.id}>{c.name}</option>)}
-          </select>
-        </div>
-        <div className="min-w-[140px]">
-          <label className="text-xs font-medium text-gray-500 mb-1 block">Difficulty</label>
-          <select name="difficulty" defaultValue={difficulty} className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400">
-            <option value="">Any Difficulty</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-          </select>
-        </div>
-        <button type="submit" className="bg-orange-600 text-white px-5 py-2 rounded-lg hover:bg-orange-700 font-medium text-sm">Filter</button>
-        {(search || category || difficulty) && (
-          <a href="/recipes" className="text-gray-500 hover:text-gray-700 text-sm px-3 py-2">Clear</a>
-        )}
       </form>
 
       {result.data.length === 0 ? (

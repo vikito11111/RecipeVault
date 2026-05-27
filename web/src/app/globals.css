@@ -4,4 +4,26 @@
   .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
   .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
   .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+
+  /* Prevent text overflow on mobile */
+  .break-word { word-break: break-word; overflow-wrap: break-word; }
+
+  /* Tap-target sizing for mobile buttons/links */
+  .tap-target { min-height: 44px; min-width: 44px; }
 }
+
+/* Smooth scrolling */
+html { scroll-behavior: smooth; }
+
+/* Better mobile tap highlight */
+* { -webkit-tap-highlight-color: transparent; }
+
+/* Prevent horizontal overflow on mobile */
+body { overflow-x: hidden; }

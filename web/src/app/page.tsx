@@ -58,26 +58,42 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-20 px-4">
+      <section className="bg-gradient-to-br from-orange-50 via-amber-50 to-yellow-50 py-14 sm:py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Discover & Share <span className="text-orange-600">Amazing Recipes</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+            Discover &amp; Share{" "}
+            <span className="text-orange-600">Amazing Recipes</span>
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
             Join thousands of food lovers. Find recipes for every occasion, share your culinary creations, and connect with fellow cooks.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/recipes" className="bg-orange-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-orange-700 transition-colors shadow-lg shadow-orange-200">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+            <Link
+              href="/recipes"
+              className="bg-orange-600 text-white px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-orange-700 transition-colors shadow-lg shadow-orange-200"
+            >
               Explore Recipes
             </Link>
-            <Link href="/auth/register" className="bg-white text-gray-800 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-colors border border-gray-200 shadow-sm">
+            <Link
+              href="/auth/register"
+              className="bg-white text-gray-800 px-7 sm:px-8 py-3.5 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-gray-50 transition-colors border border-gray-200 shadow-sm"
+            >
               Share Yours
             </Link>
           </div>
-          <div className="mt-12 grid grid-cols-3 gap-8 max-w-sm mx-auto text-center">
-            <div><div className="text-3xl font-bold text-orange-600">10K+</div><div className="text-sm text-gray-500 mt-1">Recipes</div></div>
-            <div><div className="text-3xl font-bold text-orange-600">50+</div><div className="text-sm text-gray-500 mt-1">Chefs</div></div>
-            <div><div className="text-3xl font-bold text-orange-600">8</div><div className="text-sm text-gray-500 mt-1">Categories</div></div>
+          <div className="mt-10 sm:mt-12 grid grid-cols-3 gap-4 sm:gap-8 max-w-xs sm:max-w-sm mx-auto text-center">
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-orange-600">10K+</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">Recipes</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-orange-600">50+</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">Chefs</div>
+            </div>
+            <div>
+              <div className="text-2xl sm:text-3xl font-bold text-orange-600">8</div>
+              <div className="text-xs sm:text-sm text-gray-500 mt-1">Categories</div>
+            </div>
           </div>
         </div>
       </section>

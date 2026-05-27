@@ -64,13 +64,21 @@ export default async function RecipeDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-orange-600">Home</Link>
-        <span>/</span>
-        <Link href="/recipes" className="hover:text-orange-600">Recipes</Link>
-        {recipe.category && <><span>/</span><Link href={`/categories/${recipe.category.slug}`} className="hover:text-orange-600">{recipe.category.name}</Link></>}
-        <span>/</span>
-        <span className="text-gray-800 truncate max-w-[200px]">{recipe.title}</span>
+      {/* Breadcrumb — scrollable on small screens */}
+      <div className="flex items-center gap-2 text-sm text-gray-500 mb-6 overflow-x-auto whitespace-nowrap pb-1 scrollbar-none">
+        <Link href="/" className="hover:text-orange-600 flex-shrink-0">Home</Link>
+        <span className="flex-shrink-0">/</span>
+        <Link href="/recipes" className="hover:text-orange-600 flex-shrink-0">Recipes</Link>
+        {recipe.category && (
+          <>
+            <span className="flex-shrink-0">/</span>
+            <Link href={`/categories/${recipe.category.slug}`} className="hover:text-orange-600 flex-shrink-0">
+              {recipe.category.name}
+            </Link>
+          </>
+        )}
+        <span className="flex-shrink-0">/</span>
+        <span className="text-gray-800 truncate max-w-[140px] sm:max-w-[220px]">{recipe.title}</span>
       </div>
 
       <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
@@ -162,15 +170,15 @@ export default async function RecipeDetailPage({ params }: Props) {
         <div className="space-y-4 mt-6">
           {recipeReviews.map((r) => (
             <div key={r.id} className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-700 font-semibold text-sm">
+                  <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-700 font-semibold text-sm flex-shrink-0">
                     {r.author?.name[0]?.toUpperCase()}
                   </div>
                   <span className="font-medium text-gray-900">{r.author?.name}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-yellow-400">{"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)}</span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-yellow-400 text-sm">{"★".repeat(r.rating)}{"☆".repeat(5 - r.rating)}</span>
                   <span className="text-xs text-gray-400">{formatDate(r.createdAt)}</span>
                 </div>
               </div>
